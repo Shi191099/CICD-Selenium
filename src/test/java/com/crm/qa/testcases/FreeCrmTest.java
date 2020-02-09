@@ -21,7 +21,7 @@ public class FreeCrmTest {
 
 	@BeforeMethod
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.chrome.driver", "/Users/naveenkhunteta/Downloads/chromedriver");
+		System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
 
 		ChromeOptions chromeOptions = new ChromeOptions();
 		//chromeOptions.addArguments("--headless");
