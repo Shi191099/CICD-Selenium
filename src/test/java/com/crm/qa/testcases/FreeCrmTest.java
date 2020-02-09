@@ -17,7 +17,7 @@ import org.testng.annotations.Test;
 public class FreeCrmTest {
 
 	static WebDriver driver;
-	static JavascriptExecutor js;
+	//static JavascriptExecutor js;
 
 	@BeforeMethod
 	public void setUp() throws Exception {
