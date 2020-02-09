@@ -2,14 +2,12 @@ package com.crm.qa.testcases;
 
 import java.io.File;
 import java.io.IOException;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -17,53 +15,36 @@ import org.testng.annotations.Test;
 public class FreeCrmTest {
 
 	static WebDriver driver;
-	//static JavascriptExecutor js;
+	static JavascriptExecutor js;
 
-	@BeforeMethod
+	@Test
 	public void setUp() throws Exception {
+		System.out.println("setUp"+"Execution");
 		System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+		driver = new ChromeDriver();
+		//js = (JavascriptExecutor) driver;
+		//driver.get("https://www.freecrm.com/index.html");
+	
+	      driver.get("https://google.com");
+	      
+          Thread.sleep(30000);
 
-		ChromeOptions chromeOptions = new ChromeOptions();
-		//chromeOptions.addArguments("--headless");
-		//chromeOptions.addArguments("--no-sandbox");
-		
-		  // ChromeDriver is just AWFUL because every version or two it breaks unless you pass cryptic arguments
-        //AGRESSIVE: options.setPageLoadStrategy(PageLoadStrategy.NONE); // https://www.skptricks.com/2018/08/timed-out-receiving-message-from-renderer-selenium.html
-		chromeOptions.addArguments("start-maximized"); // https://stackoverflow.com/a/26283818/1689770
-		chromeOptions.addArguments("enable-automation"); // https://stackoverflow.com/a/43840128/1689770
-		chromeOptions.addArguments("--headless"); // only if you are ACTUALLY running headless
-		chromeOptions.addArguments("--no-sandbox"); //https://stackoverflow.com/a/50725918/1689770
-		chromeOptions.addArguments("--disable-infobars"); //https://stackoverflow.com/a/43840128/1689770
-		chromeOptions.addArguments("--disable-dev-shm-usage"); //https://stackoverflow.com/a/50725918/1689770
-		chromeOptions.addArguments("--disable-browser-side-navigation"); //https://stackoverflow.com/a/49123152/1689770
-		chromeOptions.addArguments("--disable-gpu"); //https://stackoverflow.com/questions/51959986/how-to-solve-selenium-chromedriver-timed-out-receiving-message-from-renderer-exc
-        driver = new ChromeDriver(chromeOptions);
-		
-		//driver = new ChromeDriver(chromeOptions);
-
-		// driver = new ChromeDriver();
-//		js = (JavascriptExecutor) driver;
-//		driver.get("https://www.freecrm.com/index.html");
-
-        
-        
-        driver.get("https://google.com");
-        
-        Thread.sleep(1000);
-
-        if (driver.getPageSource().contains("I'm Feeling Lucky")) {
-                System.out.println("Pass");
-        } else {
-                System.out.println("Fail");
-        }
-        driver.quit();
-        
-        
+          if (driver.getPageSource().contains("I'm Feeling Lucky")) {
+                  System.out.println("Pass");
+          } else {
+                  System.out.println("Fail");
+          }
+          
+          
+          driver.quit();
+          
+          System.out.println("+++++++++++++++++++++  driver quit() ");
+	
 	}
-//
-//	
+
 //	@Test
-//	public void freeCrmTitleTest() throws InterruptedException, IOException {
+	//public void freeCrmTitleTest() throws InterruptedException, IOException {
+		
 //		String title = driver.getTitle();
 //		System.out.println("title is: " + title);
 //		getRunTimeInfoMessage("info", title);
@@ -76,10 +57,13 @@ public class FreeCrmTest {
 //			takeScreenshot("freecrmloginpage");
 //			Assert.assertTrue(false);
 //		}
-//
-//	}
-//
-//	public static void getRunTimeInfoMessage(String messageType, String message) throws InterruptedException {
+		
+		//System.out.println("+++++++++++++++++++++ hi inside freeCrmTitleTest");
+		
+
+	//}
+
+//public static void getRunTimeInfoMessage(String messageType, String message) throws InterruptedException {
 //		// Check for jQuery on the page, add it if need be
 //		js.executeScript("if (!window.jQuery) {"
 //				+ "var jquery = document.createElement('script'); jquery.type = 'text/javascript';"
@@ -99,28 +83,28 @@ public class FreeCrmTest {
 //
 //		// jquery-growl w/ no frills
 //		js.executeScript("$.growl({ title: 'GET', message: '/' });");
-//
-//		if (messageType.equals("error")) {
-//			js.executeScript("$.growl.error({ title: 'ERROR', message: '" + message + "' });");
-//		} else if (messageType.equals("info")) {
-//			js.executeScript("$.growl.notice({ title: 'Notice', message: '" + message + "' });");
-//		} else if (messageType.equals("warning")) {
-//			js.executeScript("$.growl.warning({ title: 'Warning!', message: '" + message + "' });");
+//		
+//		if(messageType.equals("error")){
+//			js.executeScript("$.growl.error({ title: 'ERROR', message: '"+message+"' });");
+//		}else if(messageType.equals("info")){
+//			js.executeScript("$.growl.notice({ title: 'Notice', message: '"+message+"' });");
+//		}else if(messageType.equals("warning")){
+//			js.executeScript("$.growl.warning({ title: 'Warning!', message: '"+message+"' });");
 //		}
 //
 //		// jquery-growl w/ colorized output
 ////		js.executeScript("$.growl.error({ title: 'ERROR', message: 'Some exception is coming' });");
 ////		js.executeScript("$.growl.notice({ title: 'Notice', message: 'your notice message goes here' });");
 ////		js.executeScript("$.growl.warning({ title: 'Warning!', message: 'your warning message goes here' });");
-//	}
-//
-//	public static void takeScreenshot(String fileName) throws IOException {
-//		// Take screenshot and store as a file format
+}
+	
+//public static void takeScreenshot(String fileName) throws IOException{
+		
+//		Take screenshot and store as a file format
 //		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 //		// now copy the screenshot to desired location using copyFile //method
-//		FileUtils.copyFile(src, new File(
-//				"/Users/NaveenKhunteta/Documents/MyPOMFramework/PageObjectModel/screenshots/" + fileName + ".png"));
-//
-//	}
+//		FileUtils.copyFile(src,new File("/Users/NaveenKhunteta/Documents/MyPOMFramework/PageObjectModel/screenshots/" + fileName +".png"));
 
-}
+	//}
+
+//}
