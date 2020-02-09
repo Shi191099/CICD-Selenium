@@ -3,7 +3,7 @@ This is a sample project to demonstrate what is page object model framework and 
 TestNG is used as test framework.
 
 Dependency
-Java
+Java   
 Maven
 
 ###libraries used
