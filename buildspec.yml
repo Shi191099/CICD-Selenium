@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+       java: corretto8
+    commands:
+        - apt-get update -y
+        - apt-get install -y maven
+  pre_build:
+    commands:
+       - java -version
+       - mvn -version 
+  build:
+    commands:
+      - echo Entered the build phase...
+      - mvn clean test
+  post_build:
+    commands:
+      - echo Build completed successfully
